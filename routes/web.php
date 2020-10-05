@@ -18,5 +18,21 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return "ret";
+
+    return "e";
 });
+
+// Route::get('/posts/{post}', function ($test) {
+//     $array = [
+//         '1' => 'non',
+//         '2' =>'oui'
+//     ];
+//     if (!array_key_exists($test,$array)) {
+//        abort('404','soory');
+//     }
+//     return view('test', [
+//         'name' => $array[$test]
+//     ]);
+// });
+
+Route::get('/contact/{contact}','ContactsController@show');
