@@ -6,21 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> {{ $contact }} </h1>
+    <h1> {{ $post->slug }} </h1>
 
-    <h2>adresse connue : </h2>
+    <h2>{{ $post->body }} </h2>
     <?php 
     // dd($adresses[$contact]);
     ?>
-
-    @forelse ($adresses as $adresse )
-    <p> {{ $adresse->adresse }}</p>
-
-        
-    @empty
-    <p> Pas d'adresse</p>
-        
-    @endforelse
 
 </body>
 </html>

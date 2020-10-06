@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\PostsController;
+use App\Models\Contacts;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +22,9 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
 
-    return "e";
+    return view('gestion_contacts',[
+        'contact'=>'Jack',
+    ]);
 });
 
 // Route::get('/posts/{post}', function ($test) {
@@ -35,4 +40,8 @@ Route::get('/home', function () {
 //     ]);
 // });
 
-Route::get('/contact/{contact}','ContactsController@show');
+// Route::get('/contact/{contact}','ContactsController@show');
+Route::get('contacts/{contact}',[ContactsController ::class,'show']);
+// Route::get('/posts/{post}','PostsController@show');
+Route::get('posts/{post}',[PostsController::class,'show']);
+
