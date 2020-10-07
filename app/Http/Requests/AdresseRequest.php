@@ -26,7 +26,8 @@ class AdresseRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'adresse' => 'required|min:5|max:255|unique:adresses'.($this->id ? ',adresse,'.$this->id :''),
+            'user_id' => 'required',
         ];
     }
 
