@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContactsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Dingo\Api\Routing\Router;
+use Facade\FlareClient\Api;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+$api = app('Dingo\Api\Routing\Router');
+$api->version('v1', function ($api) {
+    // $api->get('contacts/{id}',['as'=>'contacts.index','uses'=>[ContactsController::class,'show']]);
 });
