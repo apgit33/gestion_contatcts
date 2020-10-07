@@ -39,6 +39,11 @@ class AdresseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+
+        CRUD::column('adresse');
+        CRUD::column('user')->type('relationship')->attribute('name');
+
+
         CRUD::setFromDb(); // columns
 
         /**
@@ -57,14 +62,17 @@ class AdresseCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(AdresseRequest::class);
-
-        CRUD::setFromDb(); // fields
-
+        CRUD::field('adresse');
+        CRUD::field('user_id')->type('relationship')->attribute('name');
+        
+        // CRUD::setFromDb(); // fields
+        
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
          * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
+         
     }
 
     /**

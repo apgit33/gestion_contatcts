@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ContactRequest;
+use App\Http\Requests\UserRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ContactCrudController
+ * Class UserCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ContactCrudController extends CrudController
+class UserCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class ContactCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Contact::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/contact');
-        CRUD::setEntityNameStrings('contact', 'contacts');
+        CRUD::setModel(\App\Models\User::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
+        CRUD::setEntityNameStrings('user', 'users');
     }
 
     /**
@@ -39,7 +39,14 @@ class ContactCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
+        // CRUD::setFromDb(); // columns
+
+        CRUD::column('name');
+        CRUD::column('email');
+        CRUD::column('email_verified_at');
+        CRUD::column('is_admin');
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -56,15 +63,19 @@ class ContactCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ContactRequest::class);
+        CRUD::setValidation(UserRequest::class);
 
-        CRUD::setFromDb(); // fields
+        CRUD::field('name');
+        CRUD::field('email');
+        CRUD::field('password');
+        CRUD::field('is_admin');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
          * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
+        
     }
 
     /**
