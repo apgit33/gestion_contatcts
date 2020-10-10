@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adresse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use CheckIfAdmin;
@@ -24,7 +25,8 @@ class UsersController extends Controller
     {
 
         return view('user',[
-            'user' => User::select('name','is_admin','email')->where('id','=',$id)->first()
+            'user' => User::select('name','is_admin','email')->where('id','=',$id)->first(),
+            'adresses' => Adresse::select('adresse')->where('user_id','=',$id)->get()
         ]);
     }
 
